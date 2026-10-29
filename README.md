@@ -4,6 +4,7 @@
 > An autonomous terminal-based coding agent designed around verifiable software changes.
 
 [![PyPI version](https://img.shields.io/pypi/v/terminal-agent-cli.svg)](https://pypi.org/project/terminal-agent-cli/)
+[![Downloads](https://static.pepy.tech/badge/terminal-agent-cli)](https://pepy.tech/project/terminal-agent-cli)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](pyproject.toml)
 
