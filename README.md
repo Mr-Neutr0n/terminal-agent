@@ -86,48 +86,6 @@ flowchart TD
     Recovery --> Loop
 ```
 
-```
-+-----------------------------------------------------------------------------------+
-|                               TERMINAL AGENT CLI                                  |
-|     terminal-agent [run | resume | setup | doctor | status | diff | test | trace]  |
-+-----------------------------------------+-----------------------------------------+
-                                          |
-                                          v
-+-----------------------------------------------------------------------------------+
-|                                 CORE AGENT LOOP                                   |
-|             Observe  --->  Plan  --->  Act  --->  Verify  --->  Repair            |
-+--------------------+--------------------+--------------------+--------------------+
-                     |                    |                    |
-                     v                    v                    v
-+--------------------------+ +--------------------------+ +-------------------------+
-|     TASK CONTRACT &      | |      CONTEXT ENGINE      | |   MODEL PROVIDERS       |
-|     SESSION MANAGER      | |  (Deterministic Ranking) | | (Ollama, OpenAI, Claude)|
-+--------------------------+ +--------------------------+ +-------------------------+
-                     |                    |                    |
-                     v                    v                    v
-+-----------------------------------------------------------------------------------+
-|                                   TOOL REGISTRY                                   |
-|      read_file | write_file | edit_file | run_command | run_tests | git_diff ...   |
-+--------------------+--------------------+--------------------+--------------------+
-                     |                    |
-                     v                    v
-+-----------------------------------------+ +---------------------------------------+
-|             SECURITY POLICY             | |             SANDBOX                   |
-|   (Command Classification, SecretGuard) | |   (psutil Local & Docker Containers)  |
-+-----------------------------------------+ +---------------------------------------+
-                     |
-                     v
-+-----------------------------------------------------------------------------------+
-|                          INDEPENDENT VERIFICATION ENGINE                          |
-|             (Test runners, contract assertions, git diff boundaries)              |
-+-----------------------------------------+-----------------------------------------+
-                                          |
-                                          v
-+-----------------------------------------------------------------------------------+
-|                        12-CATEGORY RECOVERY & PROOF OF DONE                       |
-+-----------------------------------------------------------------------------------+
-```
-
 ---
 
 ## Installation
@@ -171,7 +129,7 @@ terminal-agent setup
 terminal-agent doctor
 
 # 3. Start your first task
-terminal-agent start "Analyze repo and run tests"
+terminal-agent run "Analyze repo and run tests"
 ```
 
 ---
@@ -285,6 +243,15 @@ terminal-agent resume <SESSION_ID>
 terminal-agent trace <SESSION_ID>
 ```
 
+### 10. Clean Workspaces & Checkpoints
+```bash
+# Preview old sessions and checkpoints to clean
+terminal-agent clean --dry-run
+
+# Prune sessions older than 7 days and prune checkpoints
+terminal-agent clean --days 7 --checkpoints
+```
+
 ---
 
 ## Configuration
@@ -388,7 +355,7 @@ terminal-agent/
 
 ### Running Tests
 ```bash
-# Run full automated test suite (47 tests)
+# Run full automated test suite (56 tests)
 pytest tests/ -v
 ```
 
